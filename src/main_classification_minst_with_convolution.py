@@ -1,7 +1,6 @@
 import network3
 from network3 import ConvPoolLayer, FullyConnectedLayer, SoftmaxLayer, ReLU
 import numpy as np
-import mnist_loader
 import matplotlib.pyplot as plt
 
 training_data, validation_data, test_data = network3.load_data_shared()
