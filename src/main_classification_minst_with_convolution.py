@@ -6,14 +6,18 @@ import matplotlib.pyplot as plt
 training_data, validation_data, test_data = mnist_loader.load_data_wrapper()
 training_data = list(training_data)
 
-net = network2.Network([784, 30, 30, 30, 30, 10], cost=network2.CrossEntropyCost)
-net.SGD(training_data, 
-    epochs=30, 
-    mini_batch_size=10, 
-    eta=0.1,
-    lmbda=5.0,
-    evaluation_data=validation_data,
-    monitor_evaluation_accuracy=True)
+net = Network([
+    ConvPoolLayer(image_shape=(mini_batch_size, 1, 28, 28),
+                  filter_shape=(20, 1, 5, 5),
+                  poolsize=(2, 2),
+                  activation_fn=ReLU),
+    ConvPoolLayer(image_shape=(mini_batch_size, 20, 12, 12),
+                  filter_shape=(40, 20, 5, 5),
+                  poolsize=(2, 2),
+                  activation_fn=ReLU),
+    FullyConnectedLayer(n_in=40*4*4, n_out=100, activation_fn=ReLU),
+    SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
+net.SGD(training_data, 60, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
 
 validation_data = list(validation_data)
 test_data = list(test_data)

@@ -152,13 +152,13 @@ testTheano()
 
 # ----------------------
 # - network3.py example:
-# import network3
-# from network3 import Network, ConvPoolLayer, FullyConnectedLayer, SoftmaxLayer # softmax plus log-likelihood cost is more common in modern image classification networks.
+import network3
+from network3 import Network, ConvPoolLayer, FullyConnectedLayer, SoftmaxLayer # softmax plus log-likelihood cost is more common in modern image classification networks.
 
 # read data:
-# training_data, validation_data, test_data = network3.load_data_shared()
+training_data, validation_data, test_data = network3.load_data_shared()
 # mini-batch size:
-# mini_batch_size = 10
+mini_batch_size = 10
 
 # chapter 6 - shallow architecture using just a single hidden layer, containing 100 hidden neurons.
 '''
@@ -207,5 +207,4 @@ net = Network([
                   activation_fn=ReLU),
     FullyConnectedLayer(n_in=40*4*4, n_out=100, activation_fn=ReLU),
     SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
-net.SGD(training_data, 60, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
 '''
