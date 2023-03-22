@@ -29,7 +29,7 @@ print("Expanding the MNIST training set")
 if os.path.exists("../data/mnist_expanded.pkl.gz"):
     print("The expanded training set already exists.  Exiting.")
 else:
-    f = gzip.open("../data/mnist.pkl.gz", 'rb')
+    f = gzip.open("mnist.pkl.gz", 'rb')
     training_data, validation_data, test_data = cPickle.load(f)
     f.close()
     expanded_training_pairs = []
