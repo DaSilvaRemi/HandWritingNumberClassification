@@ -122,7 +122,8 @@ class Network(object):
 
         # define functions to train a mini-batch, and to compute the
         # accuracy in validation and test mini-batches.
-        i = T.lscalar() # mini-batch index
+        #i = T.lscalar() # mini-batch index
+        i = T.cast(T.lscalar(), 'int32')
         train_mb = theano.function(
             [i], cost, updates=updates,
             givens={
@@ -178,7 +179,7 @@ class Network(object):
         print("Finished training network.")
         print("Best validation accuracy of {0:.2%} obtained at iteration {1}".format(
             best_validation_accuracy, best_iteration))
-        print("Corresponding test accuracy of {0:.2%}".format(test_accuracy))
+        print(f"Corresponding test accuracy of {test_accuracy}")
 
 #### Define layer types
 
