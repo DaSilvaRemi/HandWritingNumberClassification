@@ -4,6 +4,10 @@ WORKDIR /app
 
 COPY ./version_python_2 /app/
 
+RUN apt-get update 
+RUN apt-get upgrade -y
+RUN apt-get install pandoc texlive-xetex texlive-fonts-recommended -y
+
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
 RUN pip install notebook
 
